@@ -3,9 +3,9 @@
   include "start.php";
 
   if(isset($_POST['login'])){
-    $name = $_POST['Name'];
+    $email = $_POST['email'];
     $pw = $_POST['pw'];
-    $stmt = $conn->prepare("SELECT * FROM admin WHERE Name='$name'");
+    $stmt = $conn->prepare("SELECT * FROM teacher WHERE Email='$email'");
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -15,7 +15,8 @@
     else{
       if(password_verify($pw,$result['Password'])){
         echo "login true";
-        $_SESSION['cred'] = "admin";
+        $_SESSION['id'] = $result['idTeacher'];
+        $_SESSION['cred'] = "teacher";
         header('Location: index.php');
         exit;
       }
@@ -29,8 +30,8 @@
 
 ?>
   <form action="" method="post">
-    <input type="text" name="Name"><br>
-    <input type="password" name="pw"><br>
+    <input type="email" name="email">Email<br>
+    <input type="password" name="pw">Password<br>
     <input type="submit" name="login">
   </form>
 <?
