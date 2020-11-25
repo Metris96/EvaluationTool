@@ -6,9 +6,7 @@
      die();
    }
  }
-
  ?>
-
    <!DOCTYPE html>
    <html>
    <head>
@@ -34,6 +32,8 @@
         <a href="excelhandler.php">Add Excel</a>
         <a href="/peerevaltool/logout.php">Logout</a>
         <?php
+
+
         }
         ?>
         </div>
