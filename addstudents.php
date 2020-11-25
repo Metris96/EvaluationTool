@@ -13,12 +13,10 @@ if(isset($_POST['send'])){
     }
   else{
     array_push($groups, $values[$i]['Grp_No']);
-    //echo $values[$i]['Grp_No'] . " " . $values[$i]['Grp_Name'] ."<br>";
     $number = $values[$i]['Grp_No'];
     $name = $values[$i]['Grp_Name'];
     $teacher = $_SESSION['id'];
     $sql ="INSERT INTO `group`(Group_Name, Group_No, Teacher_id) VALUES ('$name', $number, $teacher)";
-
     $conn ->exec($sql);
 
   }
