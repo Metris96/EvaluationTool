@@ -7,10 +7,10 @@ include "connection.php";
    <div class="studentgroups">
      <h1>Groups added to evaluation</h1>
    <?php
-   $sql = $conn ->prepare ("SELECT `Group_Name`, `Group_No` FROM `group` WHERE `Teacher_id`=?") ;
+   $sql = $conn ->prepare ("SELECT `Group_Name`, `Group_No` FROM `group` WHERE `Teacher_id`=?");
    $sql-> execute([$_SESSION['id']]);
    while($row = $sql->fetch()){
-     echo $row['Group_Name'] . " ". $row['Group_No'] . "<br>";
+     echo $row['Group_Name'] . " ". $row['Group_No'] . " <button type='view'>View</button> <br>";
    }
    ?>
  </div>

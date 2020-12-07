@@ -1,6 +1,12 @@
 <?php
 include "start.php";
 include "connection.php";
+$subject ="Peerevaluation now avaiable";
+
+$message="Hello";
+
+$headers = "From: Noreply <Noreply@mail.com>\r\n";
+$headers .= "Content-type: text/html\r\n";
 if(isset($_POST['send'])){
   $string = $_POST['json'];
   $groups = array();
@@ -31,10 +37,11 @@ foreach($values as $value){
   $groupid = $conn ->prepare ("SELECT idGroup FROM `group` WHERE Group_Name=? LIMIT 1");
   $groupid-> execute([$grpName]);
   $result = $groupid->fetch();
-
+  $message="Hello \r\n You can do the evalution at:http://localhost/peerevaltool/student.php?sid=$Student_id ";
   $groupNo = $result[0];
   $sql = "INSERT INTO `student`(First_Name, Last_Name, `E-Mail`, Student_ID, Class, Group_id) VALUES('$fName', '$lName', '$Email', '$Student_id','$Class' ,'$groupNo')";
   $conn ->exec($sql);
+  mail($Email,  $subject, $message, $headers);
 }
 $conn = null;
 echo "Succesfully added students";
